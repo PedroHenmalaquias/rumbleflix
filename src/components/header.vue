@@ -1,7 +1,7 @@
     <script setup>
 </script>
     <template>
-        <section>
+        <header>
             <div class="container-header">
                 <div class="container-nav-title">
                     <div class="container-title">
@@ -23,14 +23,17 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
     </template>
 <style scoped>
 * {
     color: #2b2b2b75;
 }
 
-section {
+header {
+    z-index: 2;
+    width: 100%;
+    position: absolute;
     height: 5rem;
     background-color: rgba(255, 255, 255, 0);
 }
