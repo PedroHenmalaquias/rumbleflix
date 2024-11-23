@@ -3,7 +3,12 @@ import { ref, onMounted } from 'vue'
 import api from '@/plugin/axios'
 import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
+function openTv(tvId) {
+  router.push({ name: 'TvDetails', params: { tvId } });
+}
 const genreStore = useGenreStore()
 const isLoading = ref(false)
 const genres = ref([])
@@ -45,7 +50,7 @@ const listTvPrograms = async (genreId) => {
   <loading v-model:active="isLoading" is-full-page />
   <div class="tv-list">
     <div v-for="program in tvPrograms" :key="program.id" class="tv-card">
-      <img :src="`https://image.tmdb.org/t/p/w500${program.poster_path}`" :alt="program.name" />
+      <img :src="`https://image.tmdb.org/t/p/w500${program.poster_path}`" :alt="program.name" @click="openTv(program.id)"/>
       <div class="tv-details">
         <p class="tv-title">{{ program.name }}</p>
         <p class="tv-release-date">{{ formatDate(program.first_air_date) }}</p>
