@@ -4,11 +4,15 @@ import api from '@/plugin/axios'
 import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
 import { useRouter } from 'vue-router'
+import { useTvStore } from '@/stores/tv'
+import header from '@/components/header.vue'
+import Header from '@/components/header.vue'
 const router = useRouter()
 
 function openTv(tvId) {
   router.push({ name: 'TvDetails', params: { tvId } });
 }
+const tvStore = useTvStore()
 const genreStore = useGenreStore()
 const isLoading = ref(false)
 const genres = ref([])
@@ -20,27 +24,31 @@ onMounted(async () => {
 })
 const tvPrograms = ref([])
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
-const listTvPrograms = async (genreId) => {
-  genreStore.setCurrentGenreId(genreId);
-  isLoading.value = true
-  const response = await api.get('discover/tv', {
-    params: {
-      with_genres: genreId,
-      language: 'pt-BR',
-    },
-  })
-  tvPrograms.value = response.data.results
-  isLoading.value = false
+// const listTvPrograms = async (genreId) => {
+//   genreStore.setCurrentGenreId(genreId);
+//   isLoading.value = true
+//   const response = await api.get('discover/tv', {
+//     params: {
+//       with_genres: genreId,
+//       language: 'pt-BR',
+//     },
+//   })
+//   tvPrograms.value = response.data.results
+//   isLoading.value = false
+// }
+const list = async (params) => {
+  tvPrograms.value = await tvStore.listTv(params)
 }
 </script>
 
 <template>
+  <Header />
   <h1>Programas de TV</h1>
   <ul class="genre-list">
     <li
       v-for="genre in genreStore.genres"
       :key="genre.id"
-      @click="listTvPrograms(genre.id)"
+      @click="list({with_genres: genre.id})"
       class="genre-item"
       :class="{ active: genre.id === genreStore.currentGenreId }"
     >
@@ -73,7 +81,9 @@ const listTvPrograms = async (genreId) => {
   list-style: none;
   padding: 0;
 }
-
+/* h1{
+  margin: 10rem 0;
+} */
 .genre-item {
   background-color: #5d6424;
   border-radius: 1rem;

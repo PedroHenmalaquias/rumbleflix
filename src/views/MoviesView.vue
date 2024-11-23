@@ -1,9 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import api from '@/plugin/axios'
 import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
+import { useMovieStore } from '@/stores/movie'
+import header from '@/components/header.vue'
 import { useRouter } from 'vue-router'
+import Header from '@/components/header.vue'
 const router = useRouter()
 
 
@@ -11,37 +14,52 @@ function openMovie(movieId) {
   router.push({ name: 'MovieDetails', params: { movieId } });
 }
 const genreStore = useGenreStore()
+const movieStore = useMovieStore()
 
-const isLoading = ref(false)
+const isLoading = computed(() => movieStore.isLoading)
 const genres = ref([])
 
 onMounted(async () => {
-  isLoading.value = true
   await genreStore.getAllGenres('movie')
-  isLoading.value = false
 })
 const movies = ref([])
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
-const listMovies = async (genreId) => {
-  genreStore.setCurrentGenreId(genreId);
-  isLoading.value = true;
-  const response = await api.get('discover/movie', {
-    params: {
-      with_genres: genreId,
-      language: 'pt-BR',
-    },
-  });
-  movies.value = response.data.results;
-  isLoading.value = false;
+// const listMovies = async (genreId) => {
+//   genreStore.setCurrentGenreId(genreId);
+//   isLoading.value = true;
+//   const response = await api.get('discover/movie', {
+//     params: {
+//       with_genres: genreId,
+//       language: 'pt-BR',
+//     },
+//   });
+//   movies.value = response.data.results;
+//   isLoading.value = false;
+// };
+const puxarTop = async (params) =>{
+  movies.value = await movieStore.listMovies(params)
 };
+// const listTop = async () => {
+//   console.log('listTop');
+//   isLoading.value = true;
+//   const response = await api.get('/discover/movie', {
+//     params: {language: 'pt-BR' ,
+//     sort_by: 'popularity.desc',
+//   }
+//   });
+//   movies.value = response.data.results;
+//   isLoading.value = false;
+// };
 </script>
 <template>
+  <Header />
+<button @click="puxarTop({year: '1989'})" class="listTop">top list</button>
   <h1>Filmes</h1>
   <ul class="genre-list">
     <li class="genre-item"
     v-for="genre in genreStore.genres"
     :key="genre.id"
-    @click="listMovies(genre.id)"
+    @click="puxarTop({with_genres: genre.id})"
     :class="{ active: genre.id === genreStore.currentGenreId }"
   >
   
@@ -83,7 +101,9 @@ const listMovies = async (genreId) => {
   list-style: none;
   margin-bottom: 2rem;
 }
-
+.listTop{
+  margin: 30rem auto;
+}
 .genre-item {
   background-color: #387250;
   border-radius: 1rem;
