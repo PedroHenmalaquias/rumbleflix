@@ -4,8 +4,6 @@ import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useMovieStore } from '@/stores/movie'
 import { useTvStore } from '@/stores/tv'
-import header from '@/components/header.vue'
-import Header from '@/components/header.vue'
 
 // const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -32,8 +30,8 @@ const config = {
 }
 </script>
 <template>
-  <Header />
-    <Carousel v-bind="config">
+  <div></div>
+    <!-- <Carousel v-bind="config">
     <Slide v-for="slide in 5" :key="slide">
         
       <div class="carousel__item">{{ slide }}</div>
@@ -60,7 +58,7 @@ const config = {
   <div class="topList">
     <h2>Comédia</h2>
     <div class="list"><span v-for="movie in comedyMovies.slice(0, 15)" :key="movie.id">{{ movie.title }}</span></div>
-  </div>
+  </div> -->
 </template>
 <style scoped>
 .topList {

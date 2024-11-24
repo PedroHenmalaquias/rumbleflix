@@ -14,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/filmes">Filmes</router-link></li>
             <li><router-link to="/tv">Programas de TV</router-link></li>
+            <li><router-link to="/test">TEST</router-link></li>
           </ul>
         </div>
       </div>
@@ -52,7 +53,7 @@ header {
   height: 100%;
   justify-content: space-around;
   align-items: center;
-  color: #ffffff99;
+  color: white;
 }
 
 .container-title {
@@ -81,13 +82,23 @@ li {
 }
 a{
     text-decoration: none;
+    color: white;
 }
 input {
   background-color: transparent;
   border: none;
+  color: white;
+}
+input:focus {
+  outline: none;
+  /* background-color: red; */
+}
+input:focus > .container-search{
+  border: 5px solid red;
 }
 
 .search-bar {
+  transition: .3s ease-in-out;
   height: 100%;
   width: 25%;
   display: flex;
@@ -101,12 +112,13 @@ input {
   justify-content: space-between;
   padding: 0em 1em 0em 1em;
   align-items: center;
-  border: 1px solid #2b2b2b75;
+  border: 1px solid #6b6b6b75;
   border-radius: 2em;
 }
 
 h1 {
   font-size: 1.5em;
+  color: white;
 }
 
 .logo {

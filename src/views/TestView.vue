@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue'
 import { useMovieStore } from '@/stores/movie';
 import { useTvStore } from '@/stores/tv';
 import { useGenreStore } from '@/stores/genre';
+import StandardListCarousel from '@/components/StandardListCarousel.vue';
 
 const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -29,35 +30,13 @@ onMounted(async () => {
 })
 </script>
 <template><section>
-    <h1>FILMES - top</h1>
-    <div class="top"><span v-for="movie in topMovies" :key="movie.id">{{ movie.title }}</span></div>
-    <h1>FILMES - animação</h1>
-    <div class="top"><span v-for="movie in topMovies1989" :key="movie.id">
-        {{ movie }}
-    </span></div>
-
-    <h1>TV</h1>
-    <div class="top"><span v-for="tv in topTv" :key="tv.id">{{ tv }}</span></div>
-    <h1>TV - top</h1>
-    <div class="top"><span v-for="tv in topTv1989" :key="tv.id">{{ tv }}</span></div>
-    <hr>
-    <h1>Categorias de filmes</h1>
-    <div class="top"><span v-for="category in movieCategories" :key="category.id">{{ category }}</span></div>
-    <h1>Categorias de TV</h1>
-    <div class="top"><span v-for="category in tvCategories" :key="category.id">
-        {{ category }}
-    </span></div>
-    <br>
-    <hr><hr><hr>
-    <h1>FILMES DE ANIMAÇÃO</h1>
-    <div class="top"><span v-for="movie in animationMovives" :key="movie.id">{{ movie.title }}</span></div>
-</section>
+    <StandardListCarousel title="Top Movies" :itens="topMovies" />
+</section> 
 </template>
 <style scoped>
 section{
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
     width: 100%;
 }
 .top{

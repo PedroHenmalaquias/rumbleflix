@@ -4,9 +4,7 @@ import api from '@/plugin/axios'
 import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
 import { useMovieStore } from '@/stores/movie'
-import header from '@/components/header.vue'
 import { useRouter } from 'vue-router'
-import Header from '@/components/header.vue'
 const router = useRouter()
 
 
@@ -52,8 +50,8 @@ const puxarTop = async (params) =>{
 // };
 </script>
 <template>
-  <Header />
-<button @click="puxarTop({year: '1989'})" class="listTop">top list</button>
+  <div></div>
+<!-- <button @click="puxarTop({year: '1989'})" class="listTop">top list</button>
   <h1>Filmes</h1>
   <ul class="genre-list">
     <li class="genre-item"
@@ -90,7 +88,7 @@ const puxarTop = async (params) =>{
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 <style scoped>
 .genre-list {

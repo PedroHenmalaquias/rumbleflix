@@ -5,8 +5,6 @@ import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
 import { useRouter } from 'vue-router'
 import { useTvStore } from '@/stores/tv'
-import header from '@/components/header.vue'
-import Header from '@/components/header.vue'
 const router = useRouter()
 
 function openTv(tvId) {
@@ -42,8 +40,8 @@ const list = async (params) => {
 </script>
 
 <template>
-  <Header />
-  <h1>Programas de TV</h1>
+  <div></div>
+  <!-- <h1>Programas de TV</h1>
   <ul class="genre-list">
     <li
       v-for="genre in genreStore.genres"
@@ -69,7 +67,7 @@ const list = async (params) => {
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
