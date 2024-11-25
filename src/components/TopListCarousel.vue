@@ -3,15 +3,15 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 
 const config = {
-  itemsToShow: 3.95,  // Aproximadamente 3.95 slides visíveis
-  wrapAround: true,    // Carrossel com loop
-  transition: 500,     // Transição suave
+  itemsToShow: 6,
+  // wrapAround: true,  
+  transition: 500,
 };
 </script>
 
 <template>
   <Carousel v-bind="config">
-    <Slide v-for="slide in 20" :key="slide">
+    <Slide v-for="slide in 10" :key="slide">
       <div class="carousel__item">{{ slide }}</div>
     </Slide>
 
@@ -22,59 +22,47 @@ const config = {
 </template>
 
 <style>
-/* Largura fixa para todos os slides */
 .carousel__slide {
-  width: 20rem !important;  /* Largura fixa para todos os slides */
-  padding: 5px;
-  background-color: aqua;
-  height: 25rem;
-  flex-shrink: 0;  /* Evita que o slide encolha */
+  padding: 5;
+  height: 20rem;
+  color: black;
+  background-color: white;
+  /* width: 15rem !important; */
 }
 
-/* Estilo para o slide ativo (aqui você quer que seja o slide da esquerda) */
-.carousel__slide--active {
-  opacity: 1;
-  transform: scale(1);  /* O slide ativo no tamanho original */
-  width: 20rem;  /* A largura do slide ativo é a mesma que os outros */
+.carousel__viewport {
+  perspective: 2000px;
 }
 
-/* Slide anterior */
+.carousel__track {
+  transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+  transition: 0.5s;
+}
+
+.carousel__slide {
+  opacity: 0.9;
+  transform: scale(0.9);
+}
+
+.carousel__slide--active ~ .carousel__slide {
+  transform: scale(0.9);
+}
+
 .carousel__slide--prev {
   opacity: 1;
-  transform: scale(1.05);  /* Dá destaque ao slide anterior */
-  width: 20rem;  /* Largura igual ao slide ativo */
+  transform: scale(0.95);
 }
 
-/* Slide próximo */
 .carousel__slide.carousel__slide--next {
-  opacity: 0.8;
-  transform: scale(0.95);  /* Dá um efeito de profundidade ao slide seguinte */
-  width: 20rem;  /* Largura igual ao slide ativo */
+  opacity: 1;
+  transform: scale(0.9);
 }
 
-/* Para os slides à frente do ativo (não necessariamente o próximo ou anterior) */
-.carousel__slide--active ~ .carousel__slide {
-  opacity: 0.7;
-  transform: scale(0.9);  /* Diminui a escala dos slides à frente do ativo */
-  width: 15rem;  /* Menor largura para os outros slides */
-}
-
-/* Ajuste da área visível (viewport) do carrossel */
-.carousel__viewport {
-  width: 100%;
-  overflow: hidden;  /* Garante que apenas os slides visíveis sejam mostrados */
-}
-
-/* Responsividade - ajuste para telas menores */
-@media (max-width: 768px) {
-  .carousel__slide {
-    width: 15rem;  /* Ajuste para telas menores */
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel__slide {
-    width: 12rem;  /* Ajuste ainda mais para telas pequenas */
-  }
+.carousel__slide--active {
+  opacity: 1;
+  /* transform: scale(0.9); */
 }
 </style>
