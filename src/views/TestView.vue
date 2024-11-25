@@ -25,7 +25,7 @@ onMounted(async () => {
     topTv1989.value = await tvStore.listTv({sort_by: 'popularity.desc'})
     tvCategories.value = await genreStore.getAllGenres('tv')
     movieCategories.value = await genreStore.getAllGenres('movie')
-    animationId.value = await genreStore.getGenreId("Animation")
+    // animationId.value = await genreStore.getGenreId("Animation")
     console.log(`féeeee`,  animationId.value)
     animationMovives.value = await movieStore.listMovies({with_genres: 16})
 })
