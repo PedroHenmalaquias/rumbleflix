@@ -32,7 +32,7 @@ onMounted(async () => {
 </script>
 <template><section>
     <!-- <StandardListCarousel title="Top Movies" :itens="topMovies" /> -->
-     <HeroCarousel/>
+     <HeroCarousel :itens="topMovies"/>
 </section> 
 </template>
 <style scoped>

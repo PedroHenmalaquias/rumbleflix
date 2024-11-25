@@ -4,7 +4,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 const config = {
-  itemsToShow: 4.5,
+  itemsToShow: 5.5,
   wrapAround: false,
   snapAlign: 'start',
   gap: 10,
@@ -44,11 +44,11 @@ h2{
 span{
     /* margin-right: 1rem; */
     width: 100%;
-    height: 30vh;
+    height: 40vh;
 }
 img{
-    width: 100%;
-    height: 30vh;
+    width: 95%;
+    height: 40vh;
     border-radius: .5rem;
 }
 </style>
