@@ -4,6 +4,7 @@ import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useMovieStore } from '@/stores/movie'
 import { useTvStore } from '@/stores/tv'
+import TopListCarousel from '@/components/TopListCarousel.vue'
 
 // const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -59,6 +60,7 @@ const config = {
     <h2>Comédia</h2>
     <div class="list"><span v-for="movie in comedyMovies.slice(0, 15)" :key="movie.id">{{ movie.title }}</span></div>
   </div> -->
+  <TopListCarousel />
 </template>
 <style scoped>
 .topList {
