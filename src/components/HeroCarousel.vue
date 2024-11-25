@@ -9,20 +9,27 @@ defineProps({
   title: String,
   itens: Array,
   })
-onMounted(async () => {
-    genreStore.$state.genres  = await genreStore.getAllGenres('movie')
-    console.log(genreStore.$state.genres) 
+const isLoading = ref(false)
+  onMounted(async () => {
+  isLoading.value = true;
+  await genreStore.getAllGenres('');
+  isLoading.value = false;
+//   console.log(`por favor, ${genreStore.genres}`)
 })
-console.log(genreStore.genres)
+const config = {
+    autoplay: 5000,
+    transition: 1500,
+};
 </script>
 <template>
-    <Carousel>
+    <Carousel v-bind="config">
     <Slide v-for="item in itens.slice(0, 5)" :key="item.id">
         <div class="container">
             <div class="background"><img :src="`https://image.tmdb.org/t/p/original/${item.backdrop_path}`" alt=""></div>
         <div class="content">
             <h1>{{ item.title }}</h1>
-            <span class="rowCategories"><p v-for="genre in item.genre_ids" :key="genre.id">{{ genreStore.getGenreName(genre.id) }}</p></span>
+            <span class="rowCategories"><p v-for="genre in item.genre_ids" :key="genre.id">{{
+                genreStore.getGenreName(genre)}}</p></span>
             <span class="description"><p>{{ item.overview }}</p></span>
             <span class="actionButtons">
                 <button class="white"><img src="/public/assistirTest.svg" alt="">Assistir Agora</button>
@@ -90,7 +97,7 @@ h1{
 .rowCategories{
     display: flex;
     gap: 1rem;
-    padding: 1rem;
+    /* padding: rem; */
     border-radius: 1rem;
     /* background-color: rgba(0, 0, 0, 0.5); */
 }

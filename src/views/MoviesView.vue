@@ -18,7 +18,7 @@ const isLoading = computed(() => movieStore.isLoading)
 const genres = ref([])
 
 onMounted(async () => {
-  await genreStore.getAllGenres('movie')
+  // await genreStore.getAllGenres('movie')
 })
 const movies = ref([])
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')

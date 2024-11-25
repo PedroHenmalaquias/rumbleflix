@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
+// import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useMovieStore } from '@/stores/movie'
 import { useTvStore } from '@/stores/tv'
 
@@ -20,14 +20,14 @@ onMounted(async () => {
     romanceMovies.value = await movieStore.listMovies({with_genres: 10749})
     comedyMovies.value = await movieStore.listMovies({with_genres: 35})
 })
-const config = {
-  autoplay: 5000,
-  wrapAround: true,
-  pauseAutoplayOnHover: true,
-  mouseDrag: false,
-  touchDrag: false,
-  transition: 1500,
-}
+// const config = {
+//   autoplay: 5000,
+//   wrapAround: true,
+//   pauseAutoplayOnHover: true,
+//   mouseDrag: false,
+//   touchDrag: false,
+//   transition: 1500,
+// }
 </script>
 <template>
   <div></div>
