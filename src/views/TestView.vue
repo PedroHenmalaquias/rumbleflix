@@ -5,6 +5,7 @@ import { useMovieStore } from '@/stores/movie';
 import { useTvStore } from '@/stores/tv';
 import { useGenreStore } from '@/stores/genre';
 import StandardListCarousel from '@/components/StandardListCarousel.vue';
+import HeroCarousel from '@/components/HeroCarousel.vue';
 
 const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -30,7 +31,8 @@ onMounted(async () => {
 })
 </script>
 <template><section>
-    <StandardListCarousel title="Top Movies" :itens="topMovies" />
+    <!-- <StandardListCarousel title="Top Movies" :itens="topMovies" /> -->
+     <HeroCarousel/>
 </section> 
 </template>
 <style scoped>
