@@ -3,7 +3,9 @@ import { ref, defineProps, onMounted } from 'vue'
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import { useGenreStore } from '@/stores/genre.js'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const genreStore = useGenreStore()
 defineProps({
   title: String,
@@ -20,6 +22,9 @@ const config = {
     autoplay: 5000,
     transition: 1500,
 };
+function openMovie(movieId) {
+  router.push({ name: 'MovieDetails', params: { movieId } });
+}
 </script>
 <template>
     <Carousel v-bind="config">
@@ -32,8 +37,8 @@ const config = {
                 genreStore.getGenreName(genre)}}</p></span>
             <span class="description"><p>{{ item.overview }}</p></span>
             <span class="actionButtons">
-                <button class="white"><img src="/public/assistirTest.svg" alt="">Assistir Agora</button>
-                <button><img src="/public/verMaisTest.svg" alt="">Ver mais</button>
+                <button class="white" @click="openMovie(item.id)"><img src="/public/assistirTest.svg" alt="" >Assistir Agora</button>
+                <button @click="openMovie(item.id)"><img src="/public/verMaisTest.svg" alt="">Ver mais</button>
             </span>
         </div>
     </div>
