@@ -25,6 +25,7 @@ function formatTime(time) {
 </script>
 
 <template>
+    <div class="filter"></div>
     <section>
         <div class="background"><img :src="`https://image.tmdb.org/t/p/original/${movieStore.currentMovie.backdrop_path}`" alt=""></div>
         <div class="info"><h1>{{ movieStore.currentMovie.title }}</h1>
@@ -36,9 +37,14 @@ function formatTime(time) {
                 <button class="white"><img src="/public/assistirTest.svg" alt="">Assistir Agora</button>
                 <button class="grey"><img src="/public/list.svg" alt="">Adicionar à lista</button>
             </div>
-            <div class="secundaryButttons"></div>
+            <div class="secundaryButttons">
+            <button class="grey"><img src="/public/curtir.svg" alt=""></button>
+            <button class="grey"><img src="/public/baixar.svg" alt=""></button>
+            <button class="grey"><img src="/public/compartilhar.svg" alt=""></button>
+            </div>
         </div>
     </section>
+    <div class="description"><h2>{{ movieStore.currentMovie.overview }}</h2></div>
 <!--   
   <div class="main">
     <div class="content">
@@ -75,6 +81,13 @@ function formatTime(time) {
 </template>
 
 <style scoped>
+.filter {
+  background: linear-gradient(to bottom, rgba(0, 0, 0,0.4 ), rgba(30, 30, 30, 1));
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
 section {
     width: 100%;
     height: 100vh;
@@ -92,16 +105,16 @@ section {
 .background > img{
     width: 100%;
     height: 100%;
-    filter: brightness(.4);
+    /* filter: brightness(.4); */
 }
 .info{
     display: flex;
-    width: 30%;
+    width: 90%;
+    margin: 1rem auto;
     /* height: 30%; */
-    margin-bottom: 5%;
-    z-index: 2;
+    z-index: 3;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     color: white;
 }
 .info h1{
@@ -110,7 +123,7 @@ section {
 .rowCategories{
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
     gap: 1rem;
 }
 .actionButtons{
@@ -119,9 +132,10 @@ section {
     width: 90%;
     justify-content: space-between;
     /* gap: 1rem; */
-    padding: 1rem;
-    z-index: 2;
-    margin-left: 2%;
+    /* padding: 1rem; */
+    z-index: 3;
+    margin: 0 auto;
+    /* margin-left: 2%; */
     /* border-radius: 1rem; */
     /* background-color: rgba(0, 0, 0, 0.5); */
 }
@@ -130,7 +144,7 @@ section {
     width: 50%;
     gap: 1rem;
 }
-.primaryButtons button{
+button{
     display: flex;
     border: none;
     height: 3rem;
@@ -143,24 +157,41 @@ section {
     transition: .3s ease-in-out;
     cursor: pointer;
 }
-.primaryButtons button.white{
+button.white{
     background-color: white;
     color: black;
 }
-.primaryButtons button.grey{
+button.grey{
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
-.primaryButtons button.white:hover{
+button.white:hover{
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
-.primaryButtons button.grey:hover{
-    background-color: white;
+button.grey:hover{
+    background-color: rgba(255, 255, 255, 0.5);
     color: black;
 }
-.primaryButtons button img{
+button img{
     width: 1rem;
 }
-
+.secundaryButttons{
+    display: flex;
+    justify-content: end;
+    width: 50%;
+    gap: 1rem;
+}
+.secundaryButttons button{
+  width: 7%;
+  border-radius: 50%;
+}
+.description{
+    width: 90%;
+    margin: 1rem auto;
+    color: white;
+}
+.description h2{
+    font-size: 1rem;
+}
 </style>
