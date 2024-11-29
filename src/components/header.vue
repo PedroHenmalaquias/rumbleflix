@@ -33,7 +33,7 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 header {
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   position: absolute;
   margin-bottom: 5rem;
