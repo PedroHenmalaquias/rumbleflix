@@ -1,13 +1,14 @@
 <script setup>
-import { defineProps, onMounted } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 import { useMovieStore } from '@/stores/movie';
-import { useGenreStore } from '@/stores/genre.js'
+import { useGenreStore } from '@/stores/genre.js';
+import StandardListCarousel from './StandardListCarousel.vue';
 
 const movieStore = useMovieStore();
 const genreStore = useGenreStore()
 
 
-  const props = defineProps({
+const props = defineProps({
     movieId: {
       type: Number,
       required: true,
@@ -18,9 +19,14 @@ function formatTime(time) {
     const minutes = time % 60;
     return `${hours}h ${minutes}m`;
 }
-
+const currentGenres = []
+const recomendedMovies = ref(null);
   onMounted(async () => {
     await movieStore.getMovieDetail(props.movieId);
+    for (const genre of movieStore.currentMovie.genres) {
+  currentGenres.push(genre.id);  
+}
+    recomendedMovies.value = await movieStore.listMovies({with_genres: currentGenres.join(', ')})
   });
 </script>
 
@@ -45,6 +51,9 @@ function formatTime(time) {
         </div>
     </section>
     <div class="description"><h2>{{ movieStore.currentMovie.overview }}</h2></div>
+    <h2 class="recomends">Recomendamos também</h2>
+    <StandardListCarousel :itens="recomendedMovies" />
+
 <!--   
   <div class="main">
     <div class="content">
@@ -88,6 +97,10 @@ function formatTime(time) {
   width: 100%;
   height: 100vh;
 }
+.recomends{
+  margin-left: 5%;
+  margin-top: 2rem;
+}
 section {
     width: 100%;
     height: 100vh;
@@ -128,7 +141,7 @@ section {
 }
 .actionButtons{
     display: flex;
-    height: 20%;
+    height: 10%;
     width: 90%;
     justify-content: space-between;
     /* gap: 1rem; */
