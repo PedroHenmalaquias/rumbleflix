@@ -33,9 +33,9 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 header {
-  /* z-index: 2; */
+  z-index: 3;
   width: 100%;
-  /* position: absolute; */
+  position: absolute;
   margin-bottom: 5rem;
   height: 5rem;
   background-color: rgba(255, 255, 255, 0);

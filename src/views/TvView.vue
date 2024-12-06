@@ -17,7 +17,7 @@ const genres = ref([])
 
 onMounted(async () => {
   isLoading.value = true
-  await genreStore.getAllGenres('tv')
+  // await genreStore.getAllGenres('tv')
   isLoading.value = false
 })
 const tvPrograms = ref([])
