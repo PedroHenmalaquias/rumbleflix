@@ -1,13 +1,9 @@
 <script setup>
 import { defineProps, onMounted, ref } from 'vue';
 import { useMovieStore } from '@/stores/movie';
-import { useGenreStore } from '@/stores/genre.js';
 import StandardListCarousel from './StandardListCarousel.vue';
 
 const movieStore = useMovieStore();
-const genreStore = useGenreStore()
-
-
 const props = defineProps({
     movieId: {
       type: Number,
@@ -29,7 +25,6 @@ const recomendedMovies = ref(null);
     recomendedMovies.value = await movieStore.listMovies({with_genres: currentGenres.join(', ')})
   });
 </script>
-
 <template>
     <div class="filter"></div>
     <section>
@@ -53,42 +48,7 @@ const recomendedMovies = ref(null);
     <div class="description"><h2>{{ movieStore.currentMovie.overview }}</h2></div>
     <h2 class="recomends">Recomendamos também</h2>
     <StandardListCarousel :itens="recomendedMovies" />
-
-<!--   
-  <div class="main">
-    <div class="content">
-      <img
-        :src="`https://image.tmdb.org/t/p/w185${movieStore.currentMovie.poster_path}`"
-        :alt="movieStore.currentMovie.title"
-      />
-
-      <div class="details">
-        <h1>Filme: {{ movieStore.currentMovie.title }}</h1>
-        <p>{{ movieStore.currentMovie.tagline }}</p>
-        <p>{{ movieStore.currentMovie.overview }}</p>
-        <p>Orçamento: ${{ movieStore.currentMovie.budget }}</p>
-        <p>Avaliação: {{ movieStore.currentMovie.vote_average }}</p>
-      </div>
-    </div>
-  </div>
-
-  <p>Produtoras</p>
-  <div class="companies">
-    <template
-      v-for="company in movieStore.currentMovie.production_companies"
-      :key="company.id"
-    >
-      <img
-        v-if="company.logo_path"
-        :src="`https://image.tmdb.org/t/p/w92${company.logo_path}`"
-        :alt="company.name"
-      />
-      <p v-else>{{ company.name }}</p>
-    </template>
-  </div>
-   -->
 </template>
-
 <style scoped>
 .filter {
   background: linear-gradient(to bottom, rgba(0, 0, 0,0.4 ), rgba(30, 30, 30, 1));
@@ -118,13 +78,11 @@ section {
 .background > img{
     width: 100%;
     height: 100%;
-    /* filter: brightness(.4); */
 }
 .info{
     display: flex;
     width: 90%;
     margin: 1rem auto;
-    /* height: 30%; */
     z-index: 3;
     flex-direction: column;
     align-items: start;
@@ -144,13 +102,8 @@ section {
     height: 10%;
     width: 90%;
     justify-content: space-between;
-    /* gap: 1rem; */
-    /* padding: 1rem; */
     z-index: 3;
     margin: 0 auto;
-    /* margin-left: 2%; */
-    /* border-radius: 1rem; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
 }
 .primaryButtons{
     display: flex;
@@ -201,7 +154,7 @@ button img{
 }
 .description{
     width: 90%;
-    margin: 1rem auto;
+    margin: 1rem auto 3rem auto;
     color: white;
 }
 .description h2{
