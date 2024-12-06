@@ -8,12 +8,12 @@ export const useTvStore = defineStore('tv', () => {
   });
 
   const currentTv = computed(() => state.currentTv);
-  const isLoading = ref(false);
+  
   const getTvDetail = async (tvId) => {
     const response = await api.get(`tv/${tvId}`);
     state.currentTv = response.data;
-    console.log('currentTv', state.currentTv);
   };
+  const isLoading = ref(false);
   const listTv = async (discoverParams) => {
     console.log('discoverParams', discoverParams);
     isLoading.value = true;

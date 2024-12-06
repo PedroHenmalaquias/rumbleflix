@@ -1,141 +1,43 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import api from '@/plugin/axios'
-import Loading from 'vue-loading-overlay'
-import { useGenreStore } from '@/stores/genre'
-import { useRouter } from 'vue-router'
-import { useTvStore } from '@/stores/tv'
-const router = useRouter()
+import { useMovieStore } from '@/stores/movie';
+import { useTvStore } from '@/stores/tv';
+import HeroCarousel from '@/components/HeroCarousel.vue';
 
-function openTv(tvId) {
-  router.push({ name: 'TvDetails', params: { tvId } });
-}
+const movieStore = useMovieStore()
 const tvStore = useTvStore()
-const genreStore = useGenreStore()
-const isLoading = ref(false)
-const genres = ref([])
-
+const topMovies = ref([])
+const topTv = ref([])
+const topMovies1989 = ref([])
+const topTv1989 = ref([])
+const animationMovives = ref([])
+const animationTv = ref([])
+const animationId = ref(0)
 onMounted(async () => {
-  isLoading.value = true
-  // await genreStore.getAllGenres('tv')
-  isLoading.value = false
+    topMovies.value = await movieStore.listMovies({sort_by: 'popularity.desc'})
+    topMovies1989.value = await movieStore.listMovies({year: '1989'})
+    topTv.value = await tvStore.listTv({sort_by: 'popularity.desc'})
+    topTv1989.value = await tvStore.listTv({year: '1989'})
+    console.log(`féeeee`,  animationId.value)
+    animationMovives.value = await movieStore.listMovies({with_genres: 16})
+    animationTv.value = await tvStore.listTv({with_genres: 16})
 })
-const tvPrograms = ref([])
-const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
-// const listTvPrograms = async (genreId) => {
-//   genreStore.setCurrentGenreId(genreId);
-//   isLoading.value = true
-//   const response = await api.get('discover/tv', {
-//     params: {
-//       with_genres: genreId,
-//       language: 'pt-BR',
-//     },
-//   })
-//   tvPrograms.value = response.data.results
-//   isLoading.value = false
-// }
-const list = async (params) => {
-  tvPrograms.value = await tvStore.listTv(params)
-}
 </script>
-
-<template>
-  <div></div>
-  <!-- <h1>Programas de TV</h1>
-  <ul class="genre-list">
-    <li
-      v-for="genre in genreStore.genres"
-      :key="genre.id"
-      @click="list({with_genres: genre.id})"
-      class="genre-item"
-      :class="{ active: genre.id === genreStore.currentGenreId }"
-    >
-      {{ genre.name }}
-    </li>
-  </ul>
-  <loading v-model:active="isLoading" is-full-page />
-  <div class="tv-list">
-    <div v-for="program in tvPrograms" :key="program.id" class="tv-card">
-      <img :src="`https://image.tmdb.org/t/p/w500${program.poster_path}`" :alt="program.name" @click="openTv(program.id)"/>
-      <div class="tv-details">
-        <p class="tv-title">{{ program.name }}</p>
-        <p class="tv-release-date">{{ formatDate(program.first_air_date) }}</p>
-        <p class="tv-genres">
-          <span v-for="genre_id in program.genre_ids" :key="genre_id" @click="listMovies(genre_id)" :class="{ active: genre_id === genreStore.currentGenreId }">
-            {{ genreStore.getGenreName(genre_id) }}
-          </span>
-        </p>
-      </div>
-    </div>
-  </div> -->
+<template><section>
+     <HeroCarousel :itens="topTv"/>
+</section> 
 </template>
-
 <style scoped>
-.genre-list {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
+section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
-/* h1{
-  margin: 10rem 0;
-} */
-.genre-item {
-  background-color: #5d6424;
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  align-self: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-}
-
-.genre-item:hover {
-  cursor: pointer;
-  background-color: #7d8a2e;
-  box-shadow: 0 0 0.5rem #5d6424;
-}
-.tv-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.tv-card {
-  width: 15rem;
-  height: 30rem;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 0 0.5rem #000;
-}
-
-.tv-card img {
-  width: 100%;
-  height: 20rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem #000;
-}
-
-.tv-details {
-  padding: 0 0.5rem;
-}
-
-.tv-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  line-height: 1.3rem;
-  height: 3.2rem;
-}
-.active {
-  background-color: #67b086;
-  font-weight: bolder;
-}
-
-.movie-genres span.active {
-  background-color: #abc322;
-  color: #000;
-  font-weight: bolder;
+.top{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    margin: 1rem 0;
 }
 </style>

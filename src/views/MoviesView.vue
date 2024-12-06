@@ -11,14 +11,16 @@ const topTv = ref([])
 const topMovies1989 = ref([])
 const topTv1989 = ref([])
 const animationMovives = ref([])
+const animationTv = ref([])
 const animationId = ref(0)
 onMounted(async () => {
     topMovies.value = await movieStore.listMovies({sort_by: 'popularity.desc'})
     topMovies1989.value = await movieStore.listMovies({year: '1989'})
-    topTv.value = await tvStore.listTv({year: '1989'})
-    topTv1989.value = await tvStore.listTv({sort_by: 'popularity.desc'})
+    topTv.value = await tvStore.listTv({sort_by: 'popularity.desc'})
+    topTv1989.value = await tvStore.listTv({year: '1989'})
     console.log(`féeeee`,  animationId.value)
     animationMovives.value = await movieStore.listMovies({with_genres: 16})
+    animationTv.value = await tvStore.listTv({with_genres: 16})
 })
 </script>
 <template><section>
