@@ -3,28 +3,23 @@ import { ref, onMounted } from 'vue'
 import { useMovieStore } from '@/stores/movie';
 import { useTvStore } from '@/stores/tv';
 import HeroCarousel from '@/components/HeroCarousel.vue';
+import DifferentFilmGenresCarrousel from '@/components/DifferentFilmGenresCarrousel.vue';
 
 const movieStore = useMovieStore()
-const tvStore = useTvStore()
 const topMovies = ref([])
-const topTv = ref([])
-const topMovies1989 = ref([])
-const topTv1989 = ref([])
-const animationMovives = ref([])
-const animationTv = ref([])
-const animationId = ref(0)
+const topMovies1989 = ref([]) 
 onMounted(async () => {
     topMovies.value = await movieStore.listMovies({sort_by: 'popularity.desc'})
     topMovies1989.value = await movieStore.listMovies({year: '1989'})
-    topTv.value = await tvStore.listTv({sort_by: 'popularity.desc'})
-    topTv1989.value = await tvStore.listTv({year: '1989'})
-    console.log(`féeeee`,  animationId.value)
-    animationMovives.value = await movieStore.listMovies({with_genres: 16})
-    animationTv.value = await tvStore.listTv({with_genres: 16})
 })
 </script>
-<template><section>
+<template>
+<section>
      <HeroCarousel :itens="topMovies"/>
+     <DifferentFilmGenresCarrousel :itens="topMovies1989"/>
+     <DifferentFilmGenresCarrousel :itens="topMovies"/>
+     <DifferentFilmGenresCarrousel :itens="topMovies1989"/>
+     <DifferentFilmGenresCarrousel :itens="topMovies"/>
 </section> 
 </template>
 <style scoped>
@@ -32,6 +27,7 @@ section{
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: #111111;
 }
 .top{
     display: flex;

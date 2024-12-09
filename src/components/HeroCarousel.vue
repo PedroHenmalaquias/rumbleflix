@@ -43,22 +43,11 @@ function openMovie(movieId) {
         </div>
     </div>
     </Slide>
-
     <template #addons>
       <Navigation />
       <Pagination />
     </template>
   </Carousel>
-    <!-- <div class="container">
-        <div class="content">
-            <span class="rowCategories"><p>Ação</p><p>Herois</p><p>Drama</p></span>
-            <span class="description"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro eaque inventore impedit, voluptatibus quos eum aliquam. Commodi eligendi quos, beatae, consectetur explicabo, iusto nobis cupiditate reiciendis sed quaerat ab non.</p></span>
-            <span class="actionButtons">
-                <button class="white"><img src="/public/assistirTest.svg" alt="">Assistir Agora</button>
-                <button><img src="/public/verMaisTest.svg" alt="">Ver mais</button>
-            </span>
-        </div>
-    </div> -->
 </template>
 <style scoped>
 .container{
@@ -67,10 +56,6 @@ function openMovie(movieId) {
     height: 100vh;
     align-items: center;
     justify-content: center;
-    /* background-image: url('/public/testHero.svg'); */
-    /* background-size: auto; */
-    /* background-position:bottom; */
-    /* background-repeat: no-repeat; */
 }
 .background{
     width: 100%;

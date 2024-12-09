@@ -4,6 +4,7 @@ import 'vue3-carousel/dist/carousel.css'
 // import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { useMovieStore } from '@/stores/movie'
 import { useTvStore } from '@/stores/tv'
+import Footer from '@/components/Footer.vue'
 
 // const genreStore = useGenreStore()
 const movieStore = useMovieStore()
@@ -31,6 +32,7 @@ onMounted(async () => {
 </script>
 <template>
   <div></div>
+  <section> <Footer /></section>
     <!-- <Carousel v-bind="config">
     <Slide v-for="slide in 5" :key="slide">
         
@@ -61,6 +63,9 @@ onMounted(async () => {
   </div> -->
 </template>
 <style scoped>
+  section {
+  height: 50rem;
+ }
 .topList {
   display: flex;
   flex-direction: column;

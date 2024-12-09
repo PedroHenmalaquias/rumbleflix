@@ -15,7 +15,7 @@ defineProps({
 </script>
 <template>
     <div class="containerCarousel">
-        <h2>{{ title }}</h2>
+        <h2>Titulo</h2>
     <Carousel v-bind="config">
     <Slide v-for="item in itens" :key="item.id">
       <span><img :src="`https://image.tmdb.org/t/p/w780${item.poster_path}`" alt=""></span>
@@ -31,16 +31,16 @@ defineProps({
     min-height: 30vh;
     width: 95%;
     margin: 0 auto;
+    margin-top: 2rem;
     display: flex;
+    flex-wrap: wrap
 }
 h2{
     font-size: 1.5rem;
     color: #fff;
-    margin-left: 2.5%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 span{
-    /* margin-right: 1rem; */
     width: 100%;
     height: 100%;
     border-radius: .5rem;
@@ -60,8 +60,6 @@ img{
   height: 20rem;
   color: black;
   border-radius: .5rem;
-  /* background-color: none; */
-  /* width: 15rem !important; */
 }
 
 .carousel__viewport {
