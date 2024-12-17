@@ -56,7 +56,6 @@
 <style scoped>
 footer {
    width: 100%;
-   height: 16rem;
    background-color: white;
    position: absolute;
    bottom: 0;
@@ -71,6 +70,7 @@ footer {
 .container-footer-itens {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
+   
 }
 
 .footer-itens {
@@ -83,7 +83,10 @@ footer {
 .container-credits {
    border-top: 1px solid #6b6b6b75;
    background-color: #111111;
-   display: flex;
+   height: 4rem;
+   display: grid;
+   align-items: center;
+   grid-template-columns: 4fr 1fr;
 }
 
 .itens {
@@ -117,11 +120,15 @@ button {
 .container-title {
    display: flex;
    flex-direction: row-reverse;
-   align-items: center;
-   margin: 0em 2em 0em 2em;
+   margin: 0em 2em 0em 0em;
 }
 .logo {
   width: 3rem;
   height: 3rem;
+}
+.itens-credits {
+   display: grid;
+   grid-template-columns: 4fr 2fr 2fr 2fr;
+   justify-items: center;
 }
 </style>
