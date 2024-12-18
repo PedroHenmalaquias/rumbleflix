@@ -5,6 +5,7 @@ import api from '@/plugin/axios';
 export const useTvStore = defineStore('tv', () => {
   const state = reactive({
     currentTv: {},
+    tvPrograms: []
   });
 
   const currentTv = computed(() => state.currentTv);
@@ -14,15 +15,15 @@ export const useTvStore = defineStore('tv', () => {
     state.currentTv = response.data;
   };
   const isLoading = ref(false);
-  const listTv = async (discoverParams) => {
-    console.log('discoverParams', discoverParams);
-    isLoading.value = true;
-    const response = await api.get('/discover/tv', {
-      params: discoverParams
-    });
-    isLoading.value = false;
-    return response.data.results;
-  };
+  const listTv = async (genreId) => {
+    const response = await api.get('discover/tv', {
+      params: {
+        with_genres: genreId,
+        language: 'pt-BR',
+      },
+    })
+    state.tvPrograms = response.data.results;
+  }
 
-  return { currentTv, getTvDetail, listTv, isLoading };
+  return { currentTv, getTvDetail, listTv, isLoading, state };
 });

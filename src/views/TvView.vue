@@ -2,8 +2,10 @@
 import { ref, onMounted } from 'vue'
 import api from '@/plugin/axios'
 import { useGenreStore } from '@/stores/genre'
+import { useTvStore } from '@/stores/tv'
 
-const genreStore = useGenreStore()
+const genreStore = useGenreStore();
+const tvStore = useTvStore();
 
 onMounted(async () => {
   //   isLoading.value = true;
@@ -14,15 +16,15 @@ onMounted(async () => {
 const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 const tv = ref([])
 
-const listTv = async (genreId) => {
-  const response = await api.get('discover/tv', {
-    params: {
-      with_genres: genreId,
-      language: 'pt-BR',
-    },
-  })
-  tv.value = response.data.results
-}
+// const listTv = async (genreId) => {
+//   const response = await api.get('discover/tv', {
+//     params: {
+//       with_genres: genreId,
+//       language: 'pt-BR',
+//     },
+//   })
+//   tv.value = response.data.results
+// }
 </script>
 
 <template>
@@ -31,14 +33,14 @@ const listTv = async (genreId) => {
     <li
       v-for="genre in genreStore.genres"
       :key="genre.id"
-      @click="listTv(genre.id)"
+      @click="tvStore.listTv(genre.id)"
       class="genre-item"
     >
       {{ genre.name }}
     </li>
   </ul>
   <div class="movie-list">
-    <div v-for="pr in tv" :key="pr.id" class="movie-card">
+    <div v-for="pr in tvStore.state.tvPrograms" :key="pr.id" class="movie-card">
       <img :src="`https://image.tmdb.org/t/p/w500${pr.poster_path}`" :alt="pr.name" />
       <div class="movie-details">
         <p class="movie-title">{{ pr.name }}</p>
