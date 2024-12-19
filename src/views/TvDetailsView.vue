@@ -44,7 +44,7 @@ import DetailTvComponent from '@/components/DetailTvComponent.vue';
     </div>
   </div>
 
-  <!-- <p>Produtoras</p>
+ <p>Produtoras</p>
   <div class="companies">
     <template
       v-for="company in tvStore.currentTv.production_companies"

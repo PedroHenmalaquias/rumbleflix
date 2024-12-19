@@ -25,6 +25,7 @@ const config = {
   itemsToShow: 7,  
   transition: 500,
 };
+const formatDate = (date) => new Date(date).toLocaleDateString('pt-BR')
 function openMovie(movieId) {
   router.push({ name: 'MovieDetails', params: { movieId } });
 }
@@ -56,7 +57,7 @@ function openMovie(movieId) {
         <img :src="`https://image.tmdb.org/t/p/w500${pr.poster_path}`" :alt="pr.title" />
         <div class="movie-details">
           <p class="movie-title">{{ pr.title }}</p>
-          <p class="movie-release-date">{{ pr.release_date }}</p>
+          <p class="movie-release-date">{{ formatDate(pr.release_date) }}</p>
           <p class="movie-genres">
             <span v-for="genre_id in pr.genre_ids" :key="genre_id" @click="listMovies(genre_id)">
               {{ genreStore.getGenreName(genre_id) }}

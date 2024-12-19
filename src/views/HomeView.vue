@@ -16,7 +16,7 @@ onMounted(async () => {
 <template>
 <section>
      <HeroCarousel :itens="topMovies"/>
-     <DifferentFilmGenresCarrousel :itens="topMovies1989"/>
+     <DifferentFilmGenresCarrousel :itens="topMovies1989" />
      <DifferentFilmGenresCarrousel :itens="topMovies"/>
      <DifferentFilmGenresCarrousel :itens="topMovies1989"/>
      <DifferentFilmGenresCarrousel :itens="topMovies"/>
