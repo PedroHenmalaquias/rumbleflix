@@ -54,7 +54,7 @@ onMounted(async () => {
     </div>
   </section>
   <h2 class="recomends">Recomendamos também</h2>
-  <DifferentFilmGenresCarrousel :itens="recomendedTv" />
+  <DifferentFilmGenresCarrousel :itens="tvStore.state.tvPrograms" />
 </template>
 <style scoped>
 @import url(/src/assets/DetailComp.css);
