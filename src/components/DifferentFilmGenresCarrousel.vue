@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from 'vue'
 import 'vue3-carousel/dist/carousel.css'
+import router from '@/router';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
 const config = {
@@ -11,12 +12,15 @@ defineProps({
   title: String,
   itens: Array,
 })
+function openMovie(movieId) {
+  router.push({ name: 'MovieDetails', params: { movieId } });
+};
 </script>
 <template>
   <div class="containerCarousel">
     <h2>{{ title }}</h2>
     <Carousel v-bind="config">
-      <Slide v-for="item in itens" :key="item.id">
+      <Slide v-for="item in itens" :key="item.id" @click="openMovie(item.id)">
         <span><img :src="`https://image.tmdb.org/t/p/w780${item.poster_path}`" alt="" /></span>
       </Slide>
       <template #addons>
@@ -40,6 +44,7 @@ h2 {
   margin-bottom: 1rem;
 }
 span {
+  cursor: pointer;
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;
