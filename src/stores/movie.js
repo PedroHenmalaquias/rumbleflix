@@ -21,7 +21,7 @@ export const useMovieStore = defineStore('movie', () => {
       params: discoverParams,
     })
     isLoading.value = false
-    return response.data.results
+    return response.data
   }
 
   return { currentMovie, getMovieDetail, listMovies, isLoading }
