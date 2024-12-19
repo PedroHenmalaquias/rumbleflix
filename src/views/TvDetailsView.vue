@@ -1,4 +1,15 @@
 <script setup>
+import DetailTvComponent from '@/components/DetailTvComponent.vue';
+</script>
+
+<template>  
+<DetailTvComponent :tvId="$route.params.tvId" />
+</template>
+
+<style scoped>
+</style>
+
+<!-- <script setup>
   import { defineProps, onMounted } from 'vue';
   import { useTvStore } from '@/stores/tv';
   const tvStore = useTvStore();
@@ -33,7 +44,7 @@
     </div>
   </div>
 
-  <!-- <p>Produtoras</p>
+ <p>Produtoras</p>
   <div class="companies">
     <template
       v-for="company in tvStore.currentTv.production_companies"
@@ -48,7 +59,7 @@
     </template>
   </div> -->
   
-</template>
+<!-- </template>
 
 <style scoped>
   .companies {
@@ -58,4 +69,4 @@
     align-items: center;
     margin-bottom: 2rem;
   }
-</style>
+</style> -->

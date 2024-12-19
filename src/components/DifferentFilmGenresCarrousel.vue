@@ -15,7 +15,7 @@ defineProps({
 </script>
 <template>
     <div class="containerCarousel">
-        <h2>Titulo</h2>
+        <h2>{{ title }}</h2>
     <Carousel v-bind="config">
     <Slide v-for="item in itens" :key="item.id">
       <span><img :src="`https://image.tmdb.org/t/p/w780${item.poster_path}`" alt=""></span>
