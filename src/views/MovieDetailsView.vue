@@ -1,5 +1,5 @@
 <script setup>
-import DetailComponent from '@/components/DetailComponent.vue';
+import DetailComponent from '@/components/DetailMovieComponent.vue';
 </script>
 
 <template>  

@@ -2,7 +2,8 @@
 import { ref, onMounted } from 'vue'
 import api from '@/plugin/axios'
 import { useGenreStore } from '@/stores/genre'
-import { useTvStore } from '@/stores/tv'
+import { useTvStore } from '@/stores/tv';
+import router from '@/router';
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
@@ -31,6 +32,9 @@ const config = {
   itemsToShow: 7,  
   transition: 500,
 };
+function openTv(tvId) {
+  router.push({ name: 'TvDetails', params: { tvId } });
+}
 </script>
 
 <template>
@@ -57,11 +61,11 @@ const config = {
     </li>
   </ul> -->
   <div class="movie-list">
-    <div v-for="pr in tvStore.state.tvPrograms" :key="pr.id" class="movie-card">
+    <div v-for="pr in tvStore.state.tvPrograms" :key="pr.id" class="movie-card" @click="openTv(pr.id)">
       <img :src="`https://image.tmdb.org/t/p/w500${pr.poster_path}`" :alt="pr.name" />
       <div class="movie-details">
         <p class="movie-title">{{ pr.name }}</p>
-        <p class="movie-release-date">{{ pr.release_date }}</p>
+        <p class="movie-release-date">{{ formatDate(pr.first_air_date) }}</p>
         <p class="movie-genres">
           <span v-for="genre_id in pr.genre_ids" :key="genre_id" @click="listMovies(genre_id)">
             {{ genreStore.getGenreName(genre_id) }}

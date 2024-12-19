@@ -5,6 +5,7 @@ import api from '@/plugin/axios'
 export const useMovieStore = defineStore('movie', () => {
   const state = reactive({
     currentMovie: {},
+    moviesWithGenre: [],
   })
 
   const currentMovie = computed(() => state.currentMovie)
@@ -14,6 +15,15 @@ export const useMovieStore = defineStore('movie', () => {
     state.currentMovie = response.data
   }
   const isLoading = ref(false)
+  const getMoviesWithGenre = async (genre) => {
+    const response = await api.get('discover/movie', {
+      params: {
+        with_genres: genre,
+        language: 'pt-BR',
+      },
+    })
+    state.moviesWithGenre = response.data.results;
+  }
   const listMovies = async (discoverParams) => {
     console.log('discoverParams', discoverParams)
     isLoading.value = true
@@ -21,8 +31,8 @@ export const useMovieStore = defineStore('movie', () => {
       params: discoverParams,
     })
     isLoading.value = false
-    return response.data
+    return response.data.results
   }
 
-  return { currentMovie, getMovieDetail, listMovies, isLoading }
+  return { currentMovie, getMovieDetail, listMovies, isLoading, state, getMoviesWithGenre }
 })

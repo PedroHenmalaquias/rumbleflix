@@ -4,6 +4,7 @@ import { useMovieStore } from '@/stores/movie';
 // import { useTvStore } from '@/stores/tv';
 import { useGenreStore } from '@/stores/genre';
 import 'vue3-carousel/dist/carousel.css';
+import router from '@/router';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 // import HeroCarousel from '@/components/HeroCarousel.vue';
 // import DifferentFilmGenresCarrousel from '@/components/DifferentFilmGenresCarrousel.vue';
@@ -16,18 +17,24 @@ onMounted(async () => {
   await genreStore.getAllGenres('movie')
   //   isLoading.value = false;
 })
-const movies = ref([])
+const movies = ref([]);
+function list(id) {
+  movies.value = movieStore.listMovies({with_genres: id})
+}
 const config = {
   itemsToShow: 7,  
   transition: 500,
 };
+function openMovie(movieId) {
+  router.push({ name: 'MovieDetails', params: { movieId } });
+}
 </script>
 <template>
     <h1>Programas de TV</h1>
     <div class="container-carousel">
     <Carousel v-bind="config">
       <Slide v-for="genre in genreStore.genres" :key="genre.id">
-        <span @click="movies = movieStore.listMovies({with_genres: genre.id})" class="genre-item">{{ genre.name }}</span>
+        <span @click="movieStore.getMoviesWithGenre(genre.id)" class="genre-item">{{ genre.name }}</span>
       </Slide>
       <template #addons>
         <Navigation />
@@ -45,10 +52,10 @@ const config = {
       </li>
     </ul> -->
     <div class="movie-list">
-      <div v-for="pr in movies" :key="pr.id" class="movie-card">
-        <img :src="`https://image.tmdb.org/t/p/w500${pr.poster_path}`" :alt="pr.name" />
+      <div v-for="pr in movieStore.state.moviesWithGenre" :key="pr.id" class="movie-card" @click="openMovie(pr.id)">
+        <img :src="`https://image.tmdb.org/t/p/w500${pr.poster_path}`" :alt="pr.title" />
         <div class="movie-details">
-          <p class="movie-title">{{ pr.name }}</p>
+          <p class="movie-title">{{ pr.title }}</p>
           <p class="movie-release-date">{{ pr.release_date }}</p>
           <p class="movie-genres">
             <span v-for="genre_id in pr.genre_ids" :key="genre_id" @click="listMovies(genre_id)">
