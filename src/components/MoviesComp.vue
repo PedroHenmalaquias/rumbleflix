@@ -37,7 +37,7 @@ function openMovie(movieId) {
   <div class="container-carousel">
     <Carousel v-bind="config">
       <Slide v-for="genre in genreStore.genres" :key="genre.id">
-        <span @click="movieStore.getMoviesWithGenre(genre.id)" class="genre-item">{{ genre.name }}</span>
+        <span @click="movieStore.getMoviesWithGenre(genre.id);genreStore.setCurrentGenreId(genre.id)" :class="{ active: genre.id === genreStore.currentGenreId }" class="genre-item" >{{ genre.name }}</span>
       </Slide>
       <template #addons>
         <Navigation />

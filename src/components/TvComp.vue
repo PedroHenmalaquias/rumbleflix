@@ -28,7 +28,7 @@ function openTv(tvId) {
   <div class="container-carousel">
     <Carousel v-bind="config">
       <Slide v-for="genre in genreStore.genres" :key="genre.id">
-        <span @click="tvStore.listTv(genre.id)" class="genre-item">{{ genre.name }}</span>
+        <span @click="tvStore.listTv(genre.id);genreStore.setCurrentGenreId(genre.id)" :class="{ active: genre.id === genreStore.currentGenreId }" class="genre-item" >{{ genre.name }}</span>
       </Slide>
       <template #addons>
         <Navigation />
