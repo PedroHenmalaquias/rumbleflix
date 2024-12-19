@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
    <footer>
       <div class="container-footer">
@@ -58,26 +55,22 @@ footer {
    width: 100%;
    background-color: white;
 }
-
 .container-footer {
    width: 100%;
    display: grid;
    grid-template-rows: 3fr 1fr;
 }
-
 .container-footer-itens {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
    
 }
-
 .footer-itens {
    height: 12rem;
    background-color: #111111;
    display: flex;
    justify-content: center;
 }
-
 .container-credits {
    border-top: 1px solid #6b6b6b75;
    background-color: #111111;
@@ -86,16 +79,13 @@ footer {
    align-items: center;
    grid-template-columns: 4fr 1fr;
 }
-
 .itens {
    margin-top: 2rem;
 }
-
 p {
    margin-top: 0.5rem;
    color: #8a8888;
 }
-
 button {
    margin-top: 1rem;
    height: 3rem;
@@ -104,17 +94,14 @@ button {
    border: 2px solid #8a8888;
    background-color: #555555;
 }
-
 .container-button {
    display: flex;
    justify-content: space-evenly;
 }
-
 .imagem {
    width: 2.5rem;
    border-radius: 50%;
 }
-
 .container-title {
    display: flex;
    flex-direction: row-reverse;

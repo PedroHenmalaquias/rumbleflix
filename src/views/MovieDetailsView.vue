@@ -1,6 +1,6 @@
 <script setup>
 import DetailComponent from '@/components/DetailMovieComponent.vue';
-import Footer from '@/components/Footer.vue';
+import Footer from '@/components/FooterComp.vue';
 </script>
 
 <template>  

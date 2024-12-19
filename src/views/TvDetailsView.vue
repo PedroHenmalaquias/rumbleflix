@@ -1,6 +1,6 @@
 <script setup>
 import DetailTvComponent from '@/components/DetailTvComponent.vue';
-import Footer from '@/components/Footer.vue';
+import Footer from '@/components/FooterComp.vue';
 </script>
 
 <template>  
@@ -9,6 +9,4 @@ import Footer from '@/components/Footer.vue';
 </template>
 
 <style scoped>
-</style>
-
 </style>

@@ -14,13 +14,12 @@ import { RouterLink, RouterView } from 'vue-router'
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/filmes">Filmes</router-link></li>
             <li><router-link to="/tv">Programas de TV</router-link></li>
-            <li><router-link to="/test">TEST</router-link></li>
           </ul>
         </div>
       </div>
       <div class="search-bar">
         <div class="container-search">
-          <input type="text" placeholder="Procure Filmes , Series..." />
+          <input type="text" placeholder="Procure Filmes , Series..."  disabled/>
           <img class="lupa" src="../../public/lupa-logo.png" />
         </div>
       </div>
@@ -31,7 +30,6 @@ import { RouterLink, RouterView } from 'vue-router'
 * {
   color: #2b2b2b75;
 }
-
 header {
   z-index: 3;
   width: 100%;
@@ -40,14 +38,12 @@ header {
   height: 5rem;
   background-color: rgba(255, 255, 255, 0);
 }
-
 .container-header {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .container-nav-title {
   display: flex;
   height: 100%;
@@ -55,27 +51,23 @@ header {
   align-items: center;
   color: white;
 }
-
 .container-title {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   margin: 0em 2em 0em 2em;
 }
-
 .container-nav {
   width: 100%;
   height: 50%;
   display: flex;
   align-items: center;
 }
-
 ul {
   list-style-type: none;
   display: flex;
   gap: 1rem;
 }
-
 li {
   margin: 0em 1em 0em 1em;
   font-size: 1.5em;
@@ -91,12 +83,10 @@ input {
 }
 input:focus {
   outline: none;
-  /* background-color: red; */
 }
 input:focus > .container-search{
   border: 5px solid red;
 }
-
 .search-bar {
   transition: .3s ease-in-out;
   height: 100%;
@@ -104,7 +94,6 @@ input:focus > .container-search{
   display: flex;
   align-items: center;
 }
-
 .container-search {
   width: 90%;
   height: 55%;
@@ -115,17 +104,14 @@ input:focus > .container-search{
   border: 1px solid #6b6b6b75;
   border-radius: 2em;
 }
-
 h1 {
   font-size: 1.5em;
   color: white;
 }
-
 .logo {
   width: 3rem;
   height: 3rem;
 }
-
 .lupa {
   width: 2rem;
   height: 2rem;
