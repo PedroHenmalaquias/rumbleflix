@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import Loading from 'vue-loading-overlay';
 import { useMovieStore } from '@/stores/movie';
 import { useGenreStore } from '@/stores/genre';
 import 'vue3-carousel/dist/carousel.css';
@@ -34,7 +33,6 @@ function openMovie(movieId) {
 };
 </script>
 <template>
-  <loading v-model:active="movieStore.isLoading" is-full-page />
   <h1>FILMES</h1>
   <div class="container-carousel">
     <Carousel v-bind="config">

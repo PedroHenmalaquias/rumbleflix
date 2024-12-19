@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import Loading from 'vue-loading-overlay'
 import { useGenreStore } from '@/stores/genre'
 import { useTvStore } from '@/stores/tv'
 import router from '@/router'
@@ -25,7 +24,6 @@ function openTv(tvId) {
 }
 </script>
 <template>
-  <loading v-model:active="tvStore.isLoading" is-full-page />
   <h1>PROGRAMAS DE TV</h1>
   <div class="container-carousel">
     <Carousel v-bind="config">
