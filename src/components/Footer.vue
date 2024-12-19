@@ -7,7 +7,7 @@
          <div class="container-footer-itens">
             <div class="footer-itens">
                <div class="itens">
-                  <h2>Company</h2>
+                  <h2>Empresa</h2>
                   <p>Sobre nós</p>
                   <p>Careers</p>
                </div>
@@ -57,8 +57,6 @@
 footer {
    width: 100%;
    background-color: white;
-   position: absolute;
-   bottom: 0;
 }
 
 .container-footer {

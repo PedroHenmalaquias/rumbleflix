@@ -33,6 +33,7 @@ const recomendedMovies = ref(null);
             <div class="rowCategories"><p v-for="genre in movieStore.currentMovie.genres" :key="genre.id">{{ genre.name }}</p><p>{{ formatTime(movieStore.currentMovie.runtime) }}</p></div>
             <!-- {{ movieStore.currentMovie }} -->
         </div>
+        <div class="description"><h2>{{ movieStore.currentMovie.overview }}</h2></div>
         <div class="actionButtons">
             <div class="primaryButtons">
                 <button class="white"><img src="/public/assistirTest.svg" alt="">Assistir Agora</button>
@@ -45,7 +46,6 @@ const recomendedMovies = ref(null);
             </div>
         </div>
     </section>
-    <div class="description"><h2>{{ movieStore.currentMovie.overview }}</h2></div>
     <h2 class="recomends">Recomendamos também</h2>
     <StandardListCarousel :itens="recomendedMovies" />
 </template>
@@ -153,11 +153,16 @@ button img{
   border-radius: 50%;
 }
 .description{
-    width: 90%;
-    margin: 1rem auto 3rem auto;
+    width: 100%;
     color: white;
+    z-index: 3;
+    display: flex;
 }
+
 .description h2{
     font-size: 1rem;
+    width: 50%;
+    margin-left: 4.5rem;
+    margin-bottom: 1.5rem;
 }
 </style>

@@ -4,6 +4,8 @@ import { useMovieStore } from '@/stores/movie';
 import { useTvStore } from '@/stores/tv';
 import HeroCarousel from '@/components/HeroCarousel.vue';
 import DifferentFilmGenresCarrousel from '@/components/DifferentFilmGenresCarrousel.vue';
+import TransitionShadow from '@/components/TransitionShadow.vue';
+import Footer from '@/components/Footer.vue';
 
 const movieStore = useMovieStore()
 const topMovies = ref([])
@@ -16,10 +18,12 @@ onMounted(async () => {
 <template>
 <section>
      <HeroCarousel :itens="topMovies"/>
+     <TransitionShadow />
      <DifferentFilmGenresCarrousel :itens="topMovies1989" />
      <DifferentFilmGenresCarrousel :itens="topMovies"/>
      <DifferentFilmGenresCarrousel :itens="topMovies1989"/>
      <DifferentFilmGenresCarrousel :itens="topMovies"/>
+     <Footer />
 </section> 
 </template>
 <style scoped>

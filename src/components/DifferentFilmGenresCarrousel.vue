@@ -12,6 +12,7 @@ defineProps({
   title: String,
   itens: Array,
   })
+
 </script>
 <template>
     <div class="containerCarousel">
@@ -49,10 +50,6 @@ img{
     width: 100%;
     height: 100%;
     border-radius: .5rem;
-}
-
-.carousel__icon {
-  color:red !important;
 }
 
 .carousel__slide {
@@ -95,6 +92,5 @@ img{
 
 .carousel__slide--active {
   opacity: 1;
-  /* transform: scale(0.9); */
 }
 </style>
